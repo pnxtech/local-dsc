@@ -1,0 +1,35 @@
+{
+  "externalRoutes": {},
+  "routerToken": "",
+  "disableRouterEndpoint": false,
+  "debugLogging": true,
+  "queuerDB": 3,
+  "requestTimeout": 300,
+  "rateLimiter": {
+    "db": 14,
+    "limit": -1,
+    "duration": 3600
+  },
+  "forceMessageSignature": false,
+  "signatureSharedSecret": "d632dd6d-fb75-44cc-bdbf-ee1364f3716c",
+  "requireWebsocketAuth": false,
+  "websocketAuthService": "auth-v1-svcs",
+  "websocketAuthServiceAPI": "v1/auth/websocket/auth",
+  "hydra": {
+    "serviceName": "hydra-router",
+    "serviceDNS": "hydra-router",
+    "serviceDescription": "Service Router",
+    "serviceIP": "",
+    "servicePort": "80",
+    "serviceType": "router",
+    "plugins": {
+      "hydraLogger": {
+        "logToConsole": true,
+        "onlyLogLocally": false
+      }
+    },
+    "redis": {
+      "url": "redis://redis:6379/0"
+    }
+  }
+}

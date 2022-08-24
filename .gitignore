@@ -1,0 +1,11 @@
+.DS_Store
+*.log
+logs
+scratch.*
+node_modules/
+ngrok-session.sh
+.vscode/
+configs/secrets/*.env
+configs/secrets/*.pem
+configs/secrets/*.pub
+php-dev

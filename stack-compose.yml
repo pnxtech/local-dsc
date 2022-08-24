@@ -1,0 +1,101 @@
+version: "3.5"
+
+networks:
+  servicenet:
+    driver: overlay
+    ipam:
+      config:
+        -
+          subnet: 10.0.9.0/24
+
+configs:
+  auth_v1_svcs_config:
+    file: ./configs/auth-v1-svcs-config.json
+  hydra_logging_svcs_config:
+    file: ./configs/hydra-logging-svcs-config.json
+  hydra_router_config:
+    file: ./configs/hydra-router-config.json
+  hydra_synchron_svcs_config:
+    file: ./configs/hydra-synchron-svcs-config.json
+
+secrets:
+  env_file:
+    file: ./configs/secrets/.env
+  auth.env:
+    file: ./configs/secrets/auth.env
+  service.pem:
+    file: ./configs/secrets/service.pem
+  service.pub:
+    file: ./configs/secrets/service.pub
+
+services:
+  auth-v1-svcs:
+    image: pnxtech/auth-v1-svcs:0.1.24
+    networks:
+      - servicenet
+    depends_on:
+      - redis
+    configs:
+      - source: auth_v1_svcs_config
+        target: /usr/src/app/config/config.json
+    environment:
+      AUTH_ENV: /run/secrets/auth.env
+      SERVICE_PEM: /run/secrets/service.pem
+      SERVICE_PUB: /run/secrets/service.pub
+    secrets:
+      - auth.env
+      - service.pem
+      - service.pub
+    deploy:
+      replicas: 1
+
+  hydra-logging-svcs:
+    image: pnxtech/hydra-logging-svcs:0.3.5
+    networks:
+      - servicenet
+    depends_on:
+      - redis
+    configs:
+      - source: hydra_logging_svcs_config
+        target: /usr/src/app/config/config.json
+    volumes:
+      - ./logs:/logs
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 6
+
+  hydra-router:
+    image: pnxtech/hydra-router:1.9.13
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - servicenet
+    depends_on:
+      - redis
+    configs:
+      - source: hydra_router_config
+        target: /usr/src/app/config/config.json
+    ports:
+      - target: 80
+        published: 5353
+        protocol: tcp
+        mode: ingress
+    deploy:
+      replicas: 1
+
+  hydra-synchron-svcs:
+    image: pnxtech/hydra-synchron-svcs:1.3.3
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - servicenet
+    depends_on:
+      - redis
+    configs:
+      - source: hydra_synchron_svcs_config
+        target: /usr/src/app/config/config.json
+    deploy:
+      replicas: 1

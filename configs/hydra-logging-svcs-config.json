@@ -1,0 +1,25 @@
+{
+  "logger": {
+    "logToFile": true,
+    "logToConsole": true,
+    "config": {
+      "name": "hls",
+      "streams": [
+        {
+          "level": "trace",
+          "path": "/logs/hls.log"
+        }
+      ]
+    }
+  },
+  "hydra": {
+    "serviceName": "hydra-logging-svcs",
+    "serviceIP": "",
+    "servicePort": 12000,
+    "serviceType": "logging",
+    "serviceDescription": "Hydra Logging Service",
+    "redis": {
+      "url": "redis://redis:6379/0"
+    }
+  }
+}

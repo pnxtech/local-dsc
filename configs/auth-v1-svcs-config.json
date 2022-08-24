@@ -1,0 +1,24 @@
+{
+  "publicCert": "/run/secrets/service.pub",
+  "privateCert": "/run/secrets/service.pem",
+  "jwtPublicCert": "/run/secrets/service.pub",
+  "accessTokenExpirationInSeconds": 3600,
+  "refreshTokenExpirationInSeconds": 86400,
+  "maxBatchTokens": 5,
+  "hydra": {
+    "serviceName": "auth-v1-svcs",
+    "serviceIP": "",
+    "servicePort": 1337,
+    "serviceType": "authentication",
+    "serviceDescription": "Authentication service",
+    "plugins": {
+      "hydraLogger": {
+        "logToConsole": true,
+        "onlyLogLocally": false
+      }
+    },
+    "redis": {
+      "url": "redis://redis:6379/0"
+    }
+  }
+}

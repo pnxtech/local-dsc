@@ -1,0 +1,43 @@
+version: "3.5"
+
+networks:
+  servicenet:
+    driver: overlay
+    ipam:
+      config:
+        -
+          subnet: 10.0.9.0/24
+
+services:
+  redis:
+    image: redis/redis-stack:6.2.2-v4
+    volumes:
+      - "~/data/${STACK_NAME}/redis:/data"
+    networks:
+      - servicenet
+    ports:
+      - target: 6379
+        published: 6379
+        protocol: tcp
+        mode: ingress
+      - target: 8001
+        published: 8001
+        protocol: tcp
+        mode: ingress
+    deploy:
+      replicas: 1
+
+  mongo:
+    image: mongo:4.2.10-bionic
+    networks:
+      - servicenet
+    ports:
+      - target: 27017
+        published: 27017
+        protocol: tcp
+        mode: ingress
+    volumes:
+      - "~/data/${STACK_NAME}/mongodb:/data/db"
+    deploy:
+      replicas: 1
+

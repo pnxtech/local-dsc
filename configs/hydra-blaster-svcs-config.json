@@ -1,0 +1,19 @@
+{
+  "siteDomain": "",
+  "hydra": {
+    "serviceName": "hydra-blaster-svcs",
+    "serviceIP": "",
+    "servicePort": 80,
+    "serviceType": "site",
+    "serviceDescription": "hydra blaster website service",
+    "plugins": {
+      "hydraLogger": {
+        "logToConsole": true,
+        "onlyLogLocally": false
+      }
+    },
+    "redis": {
+      "url": "redis://redis:6379/0"
+    }
+  }
+}
