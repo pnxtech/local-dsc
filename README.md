@@ -136,4 +136,16 @@ PROVIDER_MATRIX_USER=
 PROVIDER_MATRIX_KEY=
 ```
 
+## Configuring and Launching post services
+Post services are other services that are not part of the core cluster but are used run in this cluster. An example of such services are those which you build for your own use.
 
+To configure Post services create a `post-services.yml` file in the scripts/post-services folder.  This file should contain a list of services that you want to run in the cluster.  The format of the file is the same as the `stack-compose.yml` file.
+
+If needed you can add you services config.json files into the configs/post-configs folder. And secrets can be added into the config/post-secrets folder. If you do uses these folder then you'll need to update the `post-services.yml` file to point to the correct locations.
+
+Once you've created the `post-services.yml` file you can start the cluster and the post services will be started.
+
+```shell
+cd scripts
+./start_post_services.sh
+```

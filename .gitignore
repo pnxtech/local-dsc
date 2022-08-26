@@ -1,11 +1,11 @@
 .DS_Store
+.vscode/
 *.log
 logs
-scratch.*
 node_modules/
-ngrok-session.sh
-.vscode/
 configs/secrets/*.env
 configs/secrets/*.pem
 configs/secrets/*.pub
-php-dev
+configs/post-configs/*.json
+configs/post-secrets/*.env
+scripts/post-services/*.yml
