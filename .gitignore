@@ -1,7 +1,5 @@
 .DS_Store
 .vscode/
-*.log
-logs
 node_modules/
 configs/secrets/*.env
 configs/secrets/*.pem

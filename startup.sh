@@ -1,6 +1,9 @@
 source ./scripts/stack_name.sh
-mkdir -p ../logs ~/data/${STACK_NAME} ~/data/${STACK_NAME}/redis ~/data/${STACK_NAME}/mongodb
-rm -f logs/hls.log
+mkdir -p ~/data/${STACK_NAME}/logs 
+mkdir -p ~/data/${STACK_NAME}/redis 
+mkdir -p ~/data/${STACK_NAME}/mongodb
+rm -f ~/data/${STACK_NAME}/logs/hls.log
+
 docker stack deploy --compose-file base-cluster-compose.yml ${STACK_NAME}
 sleep 10
 docker stack deploy --compose-file stack-compose.yml --with-registry-auth ${STACK_NAME}
