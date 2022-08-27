@@ -6,12 +6,16 @@ Local Docker Swarm cluster
 ---
 
 ### Usage
-
 1. Push new containers to cloud container repository.
-
 2. Add entries in the stack-compose.yml file and place configs in the configs folder.
-
 3. Start cluster and debug new services in your development repository.
+
+### Launching with NGrok
+Here is an example of redirecting localhost:5353 to an nrok.io address. Change the `cjus` to your own subdomain.
+
+```shell
+ngrok http --subdomain=cjus 5353
+```
 
 ---
 
