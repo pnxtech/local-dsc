@@ -1,5 +1,3 @@
-# Remove-Variable -Force HOME
-# Set-Variable HOME (Get-Location)
 $STACK_NAME='local-dsc'
 $HOSTIP=ipconfig | Select-String -Pattern "IPv4"
 $HOSTIP=($HOSTIP[0] -Split ":")[1].Trim()

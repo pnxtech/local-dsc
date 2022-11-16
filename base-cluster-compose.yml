@@ -13,7 +13,7 @@ services:
     image: redis/redis-stack:6.2.2-v4
     #command: redis-cli --save 20 1 --loglevel warning --appendonly yes --protected-mode no
     volumes:
-      - "~/data/${STACK_NAME}/redis:/data"
+      - "./data/${STACK_NAME}/redis:/data"
     networks:
       - servicenet
     ports:
@@ -38,7 +38,7 @@ services:
         protocol: tcp
         mode: ingress
     volumes:
-      - "~/data/${STACK_NAME}/mongodb:/data/db"
+      - "./data/${STACK_NAME}/mongodb:/data/db"
     deploy:
       replicas: 1
 

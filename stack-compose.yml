@@ -59,7 +59,7 @@ services:
       - source: hydra_logging_svcs_config
         target: /usr/src/app/config/config.json
     volumes:
-      - "~/data/${STACK_NAME}/logs:/logs"
+      - "./data/${STACK_NAME}/logs:/logs"
     deploy:
       replicas: 1
       restart_policy:

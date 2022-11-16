@@ -13,6 +13,6 @@ while [ "$(docker ps | grep ${STACK_NAME})" ]; do
 done;
 
 d=`date +%Y%m%d-%H%M%S`
-tar czPf ~/data/${STACK_NAME}/redis/backup-$d.tgz ~/data/${STACK_NAME}/redis/dump.rdb
+tar czPf ./data/${STACK_NAME}/redis/backup-$d.tgz ./data/${STACK_NAME}/redis/dump.rdb
 
 echo "Shut down of ${STACK_NAME} complete."

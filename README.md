@@ -1,7 +1,12 @@
-### local-dsc
+# local-dsc
 Local Docker Swarm cluster
 
 <img src="assets/docker-swarm-cluster.jpeg" width="256px" />
+
+---
+
+### IMPORTANT!!
+This repo was originally built to support a docker swarm cluster running on MacOSX.  Now, this repo is being updated to support use on Microsoft Windows. As such, the scripts in the `scripts` folder need to be ported to Powershell.
 
 ---
 
