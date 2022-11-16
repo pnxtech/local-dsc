@@ -5,8 +5,17 @@ Local Docker Swarm cluster
 
 ---
 
-### IMPORTANT!!
+## IMPORTANT!!
 This repo was originally built to support a docker swarm cluster running on MacOSX.  Now, this repo is being updated to support use on Microsoft Windows. As such, the scripts in the `scripts` folder need to be ported to Powershell.
+
+### Windows Notes
+- You may recieve an error when trying to run the startup.ps1 and shutdown.ps1 powershell scripts.
+- To fix this, you need to run the following command in an elevated powershell window:
+    - `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+    - or perhaps try: 
+      - `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
+
+- This repo must be placed in your home user folder and not on a shared or networked drive.
 
 ---
 
