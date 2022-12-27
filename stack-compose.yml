@@ -17,7 +17,8 @@ configs:
     file: ./configs/hydra-router-config.json
   hydra_synchron_svcs_config:
     file: ./configs/hydra-synchron-svcs-config.json
-
+  hmr_service_config:
+    file: ./configs/hmr-service-config.json
 secrets:
   env_file:
     file: ./configs/secrets/.env
@@ -96,6 +97,20 @@ services:
       - redis
     configs:
       - source: hydra_synchron_svcs_config
+        target: /usr/src/app/config/config.json
+    deploy:
+      replicas: 1
+
+  hmr-service:
+    image: pnxtech/hmr-service:1.0.0
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - servicenet
+    depends_on:
+      - redis
+    configs:
+      - source: hmr_service_config
         target: /usr/src/app/config/config.json
     deploy:
       replicas: 1
