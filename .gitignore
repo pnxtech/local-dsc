@@ -9,3 +9,4 @@ configs/secrets/*.pub
 configs/post-configs/*.json
 configs/post-secrets/*.env
 scripts/post-services/*.yml
+scratch.*
