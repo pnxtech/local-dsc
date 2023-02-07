@@ -13,8 +13,10 @@ configs:
     file: ./configs/auth-v1-svcs-config.json
   hydra_logging_svcs_config:
     file: ./configs/hydra-logging-svcs-config.json
-  hydra_router_config:
-    file: ./configs/hydra-router-config.json
+  # hydra_router_config:
+  #   file: ./configs/hydra-router-config.json
+  hydra_router.env:
+    file: ./configs/hydra-router.env
   hydra_synchron_svcs_config:
     file: ./configs/hydra-synchron-svcs-config.json
   hmr_service_config:
@@ -69,7 +71,7 @@ services:
         max_attempts: 6
 
   hydra-router:
-    image: pnxtech/hydra-router:1.9.13
+    image: pnxtech/hydra-router:1.9.14
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
     networks:
@@ -77,13 +79,17 @@ services:
     depends_on:
       - redis
     configs:
-      - source: hydra_router_config
-        target: /usr/src/app/config/config.json
+      # - source: hydra_router_config
+      #   target: /usr/src/app/config/config.json
+      - source: hydra_router.env
+        target: /usr/src/app/.env
     ports:
       - target: 80
         published: 5353
         protocol: tcp
         mode: ingress
+    environment:
+      HYDRA_ROUTER_ENV: /usr/src/app/.env
     deploy:
       replicas: 1
 
