@@ -71,7 +71,7 @@ services:
         max_attempts: 6
 
   hydra-router:
-    image: pnxtech/hydra-router:1.9.14
+    image: pnxtech/hydra-router:1.9.15
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
     networks:
